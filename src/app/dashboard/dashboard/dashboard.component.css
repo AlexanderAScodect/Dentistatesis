@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.allex {
+    background-color: #0687be !important;
+    width: 100%;
+    height: 67px;
+}
+
+.fix {
+    position: fixed;
+    width: 100%;
+}
+
+.list-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.aside {
+    background-color: #0687be;
+    position: absolute;
+    width: 250px;
+    height: 100%;
+    left: -400px;
+    z-index: 30;
+    top: 0;
+    justify-content: space-between;
+    transition: 1s;
+}
+
+.show {
+    display: flex;
+    flex-direction: row;
+}
+
+.aside.mostrar {
+    left: 0px;
+}
+
+.aside__items {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between !important;
+}
+
+.listRutas {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    align-items: start;
+    justify-content: center;
+    padding: 0px;
+    margin-top: 25px;
+}
+
+.logo {
+    object-fit: cover;
+    margin: auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top: 25px;
+}
+
+.list__item-a {
+    text-decoration: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 17px;
+}
+
+.list__item {
+    padding: 20px;
+    width: 100%;
+    cursor: pointer;
+    transition: 1s all;
+}
+
+.list__item:hover{
+    background-color: #a8cfff;
+}
+
+.iconside {
+    padding: 0;
+    margin: 0;
+    width: 24px;
+    color: white;
+    font-size: 18px;
+}
+
+.icono {
+    display: block;
+    font-size: 150px;
+    padding: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    cursor: pointer;
+    color: #e15639;
+}
+
+.iconocerrar.left {
+    margin-left: 142px;
+}
+.txtmenu{
+    font-size: 20px;
+}
+.iconocerrar {
+    color: white;
+    cursor: pointer;
+    font-size: 30px;
+}
+.iconcuent{
+    color: white;
+    cursor: pointer;
+    font-size: 30px;
+    background-color: #0687be !important;
+    justify-content: center;
+}

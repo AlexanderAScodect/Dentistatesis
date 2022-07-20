@@ -1,0 +1,110 @@
+.agendar-cita{
+    margin-top: 200px;
+    background-image: url("http://www.clinicacanoalvarez.com/sites/default/files/slider_coca_adulto.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.agendar{
+    width: 100%;
+    height: 100%;
+    background-color: #122338de;
+    padding: 150px;
+    transition: 1s;
+}
+
+.form-cita{
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.cita{
+    margin: 0px auto;
+    background-color: white;
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 30px;
+}
+
+.cita p{
+    color: #505050;
+    font-size: 15px;
+}
+
+.cita h2{
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 5px;
+    padding: 25px;
+    background-color: #044e6e;
+    font-weight: lighter;
+    border-top-left-radius: 30px;
+}
+
+.cita .input{
+    width: 100%;
+    outline: none;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #bbbbbb;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.cita .input:focus{
+    border: 1px solid #00aff3;
+}
+
+.separador {
+    display: block;
+    width: 2px;
+    height: 90%;
+    background-color: #00597f;
+}
+
+
+.button-agendar-cita{
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 20px;
+    border: none;
+    background-color: white;
+    color: #00597f;
+    border: 1px solid #00597f;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transition: 0.3s;
+}
+
+.button-agendar-cita:hover{
+    background-color: #00597f;
+    color: white;
+    padding: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.centrar-boton{
+    height: 90px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 300px){
+    .agendar{
+        padding: 15px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+}
+
+@media (min-width: 1200px){
+    .agendar{
+        padding: 150px;
+    }
+}
+

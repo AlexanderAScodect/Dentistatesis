@@ -1,0 +1,260 @@
+<ng-template #modal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">SELECCIONE</h4>
+        <!--<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>-->
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">Cerrar</button>
+
+
+    </div>
+    <div class="modal-body">
+
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Pacientes creados">
+                <table class="table-servicios fw-lighter w-100 shadow">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of pacientes | slice: (page-1) * pageSize : page * pageSize">
+                            <td>{{ c.Nombre }}</td>
+                            <td>{{ c.Correo }}</td>
+                            <td><button mat-stroked-button (click)="selecpaciente(c)">
+                                    <mat-icon>add</mat-icon>
+                                </button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ngb-pagination class="d-flex justify-content-end" [(page)]="page" [pageSize]="pageSize"
+                    [collectionSize]="pacientes.length"></ngb-pagination>
+            </mat-tab>
+            <mat-tab label="Crear nuevo ">
+                <form [formGroup]="formpac">
+                    <div class="row mx-0 px-0">
+                        <div class="col-lg">
+                            <mat-form-field class="w-100" appearance="fill">
+                                <mat-label>Nombre</mat-label>
+                                <input matInput rows="1" maxlength="255" formControlName="Nombre" autocomplete="off"
+                                    type="text" id="fname">
+                                <mat-error *ngIf="formpac.get('Nombre').hasError('required')">
+                                    <strong>El Nombre es requerido</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row mx-0 px-0">
+                        <div class="col-lg">
+                            <mat-form-field class="w-100" appearance="fill">
+                                <mat-label>DNI del paciente</mat-label>
+                                <input matInput rows="1" maxlength="8" formControlName="DniPa" autocomplete="off"
+                                    type="number" id="fname">
+                                <mat-error *ngIf="formpac.get('DniPa').hasError('required')">
+                                    <strong>El DNI del paciente es requerido</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg">
+                        <mat-form-field class="w-100" appearance="fill">
+                            <mat-label>Telefono</mat-label>
+                            <input matInput rows="1" maxlength="9" formControlName="Telefono" autocomplete="off"
+                                type="number" id="fname">
+                            <mat-error *ngIf="formpac.get('Telefono').hasError('required')">
+                                <strong>El Telefono es requerido</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    </div>
+                    <div class="row mx-0 px-0">
+                        <div class="col-lg">
+                            <mat-form-field class="w-100" appearance="fill">
+                                <mat-label>Correo</mat-label>
+                                <input matInput rows="1" maxlength="255" formControlName="Correo" autocomplete="off"
+                                    type="email" id="fname">
+                                <mat-error *ngIf="formpac.get('Correo').hasError('required')">
+                                    <strong>porfavor escriba su correo</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row mx-0 px-0">
+                        <div class="col-lg">
+                            <mat-form-field class="w-100" appearance="fill">
+                                <mat-label>Edad</mat-label>
+                                <input matInput rows="1" maxlength="3" formControlName="Edad" autocomplete="off" type="number"
+                                    id="fname">
+                                <mat-error *ngIf="formpac.get('Edad').hasError('required')">
+                                    <strong>La edad es requerido</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg">
+                            <mat-form-field class="w-100" appearance="fill">
+                                <mat-label>Contraseña</mat-label>
+                                <input matInput rows="1" maxlength="255" formControlName="Clave" autocomplete="off"
+                                    type="password" id="fname">
+                                <mat-error *ngIf="formpac.get('Clave').hasError('required')">
+                                    <strong>La Clave es necesaria</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea matInput rows="4" maxlength="255" formControlName="Obeservaciones" autocomplete="off"
+                            type="text" id="fname"></textarea>
+
+                    </mat-form-field>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success" (click)="abrirmodalpaciente()">Crear nuevo
+                        paciente</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+
+    </div>
+    <div class="modal-footer">
+
+    </div>
+</ng-template>
+
+<div class="container">
+    <div class="d-flex mt-5">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
+            <li ngbNavItem="1">
+                <a ngbNavLink class="doctor-cita-seccion shadow d-flex align-items-center">
+                    <mat-icon class="me-2">calendar_month</mat-icon> Citas
+                </a>
+                <ng-template ngbNavContent>
+                    <table class="table-servicios fw-lighter w-100 shadow">
+                        <thead>
+                            <tr>
+                                <th>Doctor</th>
+                                <th>Tipo de Cita</th>
+                                <th>Fecha <button class="botonordenar" (click)="sortEdad()"><i
+                                            class="fa-solid fa-arrow-down-short-wide inconsort"></i></button></th>
+                                <th>Hora</th>
+                                <th>Total</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let serv of servicios ">
+                                <ng-container *ngIf="serv.realizo!= null && serv.realizo==true">
+                                    <td>{{ serv.nombre_doctor }}</td>
+                                    <td>{{ serv.tipo_cita }}</td>
+                                    <td>{{ serv.fecha.split("T")[0] }}</td>
+                                    <td>{{ serv.hora ? serv.hora:'No hay datos' }}</td>
+                                    <td>{{ serv.total }}</td>
+                                    <td >
+                                        <div class="icon justify-content-center">
+                                          <span class="icono" matTooltip="realizado" (click)="realizadocita(serv)">
+                                            <i class="fa-solid fa-clipboard-check"style="color: #3D8947;"></i></span>
+                                        </div>
+                                      </td>
+                                </ng-container>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </ng-template>
+            </li>
+            <li ngbNavItem="2" (shown)="mostrarcrearcita()">
+                <a ngbNavLink class="doctor-cita-seccion shadow d-flex align-items-center">
+                    <mat-icon class="me-2">add</mat-icon> Añadir nueva cita
+                </a>
+                <ng-template ngbNavContent>
+                    <div class="nuevoservicio-form shadow">
+                        <h2 class="w-100 text-center fw-lighter" id="test">CREAR NUEVA CITA</h2>
+                        <form action="" [formGroup]="formservicio" (submit)="submit()">
+                            <div class="row ">
+                                <div class="col-lg ">
+                                    <div class="mb-3">
+                                        <mat-form-field class="w-100" appearance="fill">
+                                            <mat-label>Doctor</mat-label>
+                                            <input matInput type="text" placeholder="Doctor"
+                                                formControlName="NombreDoctor" readonly>
+                                            <mat-error *ngIf="formservicio.get('NombreDoctor').hasError('required')">
+                                                Este campo es <strong>requerido</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-lg">
+                                    <div class="mb-3">
+                                        <mat-form-field class="w-100" appearance="fill">
+                                            <mat-label>Paciente</mat-label>
+                                            <input matInput type="text" (click)="abrirmodal(modal)"
+                                                placeholder="Paciente" formControlName="NombrePaciente" readonly>
+                                            <mat-error *ngIf="formservicio.get('NombrePaciente').hasError('required')">
+                                                Este campo es <strong>requerido</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <mat-form-field class="w-100" appearance="fill">
+                                    <mat-label>Fecha</mat-label>
+                                    <input matInput type="text" placeholder="Fecha" id="fecha-servicio"
+                                        formControlName="Fechadia" readonly>
+                                    <mat-error *ngIf="formservicio.get('Fechadia').hasError('required')">
+                                        Este campo es <strong>requerido</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="mb-3">
+                                <mat-form-field class="w-100" appearance="fill">
+                                    <mat-label>Hora</mat-label>
+                                    <input matInput type="text" placeholder="Hora" id="hora-servicio"
+                                        formControlName="Fechahora" readonly>
+                                    <mat-error *ngIf="formservicio.get('Fechahora').hasError('required')">
+                                        Este campo es <strong>requerido</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="mb-3">
+                                <mat-form-field class="w-100" appearance="fill">
+                                    <mat-label>Servicio</mat-label>
+                                    <mat-select formControlName="IdCitas" (valueChange)="cambiarcita($event)">
+                                        <mat-option *ngFor="let cita of citas" [value]="cita.IdCitas">
+                                            {{cita.Nombre}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="formservicio.get('Fechahora').hasError('required')">
+                                        El tipo de servicio es <strong>requerido</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="mb-3">
+                                <mat-form-field class="w-100" appearance="fill">
+                                    <mat-label>Total</mat-label>
+                                    <input matInput type="number" placeholder="Total" formControlName="Total" readonly>
+                                    <mat-error *ngIf="formservicio.get('Total').hasError('required')">
+                                        Este campo es <strong>requerido</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <mat-form-field class="w-100" appearance="fill">
+                                <mat-label> Observaciones</mat-label>
+                                <textarea matInput rows="4" maxlength="255" formControlName="Observaciones" autocomplete="off" type="text" id="fname"></textarea>
+                                
+                                </mat-form-field>
+                            <div class="d-flex justify-content-end">
+                                <button mat-raised-button type="submit"
+                                    style="background-color: #0687be;color: white;">Crear nueva cita</button>
+                            </div>
+                        </form>
+                    </div>
+                </ng-template>
+            </li>
+        </ul>
+
+        <div [ngbNavOutlet]="nav" class="ms-4"></div>
+    </div>
+</div>

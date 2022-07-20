@@ -1,0 +1,130 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h1 class="modal-title titulomodal" id="modal-basic-title">Cita</h1>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="formanodal">
+      <form [formGroup]="myForm">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Doctor</mat-label>
+          <mat-select formControlName="DniDo" (valueChange)="cambiardoc($event)">
+            <mat-option *ngFor="let food of doc" [value]="food.DniDo">
+              {{food.Nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <div class="row">
+          <div class="col-lg">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Fecha por horas</mat-label>
+              <input matInput type="time" placeholder="Hora" id="hora-servicio" formControlName="Fechahora" >
+              <mat-error *ngIf="myForm.get('Fechahora').hasError('required')">
+                <strong>La Hora es requerida</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-lg">
+            <mat-form-field class="w-100" appearance="fill" >
+              <mat-label>Fecha por dias</mat-label>
+              <input matInput type="date" placeholder="Fecha" id="fecha-servicio" formControlName="Fechadia">
+              <mat-error *ngIf="myForm.get('Fechadia').hasError('required')">
+                <strong>La fecha es requerida</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Paciente</mat-label>
+          <mat-select formControlName="DniPa" (valueChange)="cambiarpac($event)">
+            <mat-option *ngFor="let food of pac" [value]="food.DniPa">
+              {{food.Nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Servicio</mat-label>
+          <mat-select formControlName="IdCitas" (valueChange)="cambiarcita($event)">
+            <mat-option *ngFor="let cita of cit" [value]="cita.IdCitas">
+              {{cita.Nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Total</mat-label>
+          <input matInput type="number" placeholder="Total" formControlName="Total" readonly>
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label> Observaciones</mat-label>
+          <textarea matInput rows="4" maxlength="255" formControlName="Observaciones" autocomplete="off" type="text"
+            id="fname"></textarea>
+          <mat-error *ngIf="myForm.get('Observaciones').hasError('required')">
+            <strong>La Observaciones es requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Guardar</button>
+  </div>
+</ng-template>
+<div class="all">
+  <div *ngIf="serv">
+    <div class="seccion mb-4 shadow d-flex align-items-center">
+      <i class="fa-solid fa-calendar-days iconside"></i>
+      <h1 class="titulo">Citas</h1>
+    </div>
+
+    <div class="d-flex mt-3 justify-content-between">
+      <mat-form-field class="w-25" appearance="fill">
+        <mat-label>Busca por Hora</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="..." value="">
+      </mat-form-field>
+      <span class="iconocrear"><i class="fa-solid fa-square-plus " (click)="open(content, null)"></i></span>
+    </div>
+    <table class="table shadow matSort">
+      <thead>
+        <tr>
+          <th scope="col" class="head">Fecha dias<button class="botonordenar" (click)="sortEdad()"><i
+                class="fa-solid fa-arrow-down-short-wide inconsort"></i></button></th>
+          <th scope="col" class="head"> fecha horas</th>
+          <th scope="col" class="head">Nombre del doctor</th>
+          <th scope="col" class="head">Nombre del paciente</th>
+          <th scope="col" class="head">Id del tipo de la cita</th>
+          <th scope="col" class="head">Total</th>
+          <th scope="col" class="headobese">Observaciones</th>
+          <th scope="col" class="head acciones"> Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let do of serv | slice: (page-1) * pageSize : page * pageSize">
+          <td class="head">{{do.fechadia.split("T")[0] }}</td>
+          <td class="head">{{do.fechahora}}</td>
+          <td class="head">{{do.DniDo_nombre}}</td>
+          <td class="head">{{do.DniPa_nombre}}</td>
+          <td class="head">{{do.IdCitas_nombre}}</td>
+          <td class="head">S/. {{do.total}}</td>
+          <td class="headobese">{{do.observaciones}}</td>
+          <td>
+            <div class="icon justify-content-center">
+              <span class="icono" matTooltip="Editar Cita" (click)="open(content, do)"><i
+                  class="fa-solid fa-pen-to-square " style="color: #1f516f;"></i></span>
+              <span class="icono" matTooltip="Eliminar Cita" (click)="eliminarcat(do)"><i
+                  class="fa-solid fa-circle-minus " style="color: #e15639;"></i></span>
+              <div class="icon justify-content-center">
+                <span class="icono "  matTooltip="realizado" (click)="realizadocita(do)" [style.display]="do.realizo ? 'block':'none'">
+                  <i class="fa-solid fa-clipboard-check btnrealiz"  ></i></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ngb-pagination class="d-flex justify-content-end" [(page)]="page" [pageSize]="pageSize"
+      [collectionSize]="serv.length"></ngb-pagination>
+
+  </div>
+</div>

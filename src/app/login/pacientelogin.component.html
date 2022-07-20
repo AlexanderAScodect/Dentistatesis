@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="pacientelogin">
+    <div class="iniciosesion-form shadow">
+        <div class="iniciosesion-form-titulo">
+            <div class="d-flex justify-content-center align-items-center">
+                <img class="logoimg"
+                    src="https://media.discordapp.net/attachments/598204356923359252/987948491747766272/gatoctmr.png"
+                    alt="Logo Dental Llenera">
+            </div>
+            <h2 class="mt-3">Inicie Sesion</h2>
+        </div>
+        <form action="" [formGroup]="form" (submit)="submit()">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Correo</mat-label>
+                <input matInput type="email" placeholder="Correo" formControlName="correo">
+                <mat-error *ngIf="form.get('correo').hasError('email') && !form.get('correo').hasError('required')">
+                    Porfavor ingrese un correo valido
+                </mat-error>
+                <mat-error *ngIf="form.get('correo').hasError('required')">
+                    Correo es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput placeholder="Contraseña" type="password" formControlName="clave">
+                <mat-error *ngIf="form.get('clave').hasError('required')">
+                    Contraseña es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+            <div class="d-flex justify-content-center">
+                <button>Iniciar Sesion</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<app-home-footer></app-home-footer>

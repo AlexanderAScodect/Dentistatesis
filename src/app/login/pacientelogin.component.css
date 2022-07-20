@@ -1,0 +1,80 @@
+
+
+
+.pacientelogin{
+    height: 700px;
+}
+.logoimg {
+    width: 230px;
+    height: 230px;
+    margin-left:8px ;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.iniciosesion-form{
+    position: absolute;
+    width: 350px;
+    top: 20%;
+    left: 50%;
+    background-color: white;
+    font-weight: lighter;
+    color: #00597f;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transform: translate(-50%, 0%);
+}
+
+.iniciosesion-form h2{
+    font-size: 20px;
+    font-weight: lighter;
+    margin-bottom: 0px;
+}
+
+.iniciosesion-form-titulo{
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    border-top-left-radius: 15px;
+    background-color: #00597f;
+}
+
+.iniciosesion-form-titulo span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    width: 90px;
+    height: 90px;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.iniciosesion-form form{
+    padding: 25px;
+}
+
+.iniciosesion-form button{
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 20px;
+    border: none;
+    background-color: white;
+    color: #00597f;
+    border: 1px solid #00597f;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transition: 0.3s;
+}
+
+
+.iniciosesion-form button:hover{
+    background-color: #00597f;
+    color: white;
+    padding: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+

@@ -1,0 +1,199 @@
+.main {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.info__input {
+    font-weight: 600;
+    color: #4E7BFF;
+    font-size: 14px;
+    padding: 6px;
+    margin-bottom: 32px;
+    width: 320px;
+    height: 30px;
+    outline: none;
+    background-color: white;
+    border: 0;
+    /*  border: 1px solid#4E7BFF; */
+    border-radius: 12px;
+}
+
+.info__input::placeholder {
+    font-weight: 700;
+    color: #88b7e6;
+}
+
+.container {
+    overflow: hidden;
+    display: grid;
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 9px solid #4E7BFF;
+    margin-bottom: 32px;
+    place-content: center;
+}
+
+.logoimg {
+    width: 230px;
+    height: 230px;
+    margin-left:8px ;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.cardLogin {
+    color: white;
+    background: rgb(1, 116, 161);
+    background: linear-gradient(90deg, rgba(1, 116, 161, 1) 0%, rgba(63, 152, 231, 1)600%);
+    box-sizing: border-box;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+    width: 35%;
+    height: 100vh;
+}
+
+.btn_log {
+    border: none;
+    background: none;
+    color: white;
+    height: 42px;
+    border-radius: 12px;
+    background-color: #4E7BFF;
+    transition: all 200ms;
+    border: 1px solid #4E7BFF;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.btn_log:hover {
+    transform: scale(1);
+}
+
+.inner {
+    width: 100%;
+    height: 70%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.image {
+    font-family: 'Lobster', cursive;
+    font-weight: 700;
+    padding: 24px;
+    box-sizing: border-box;
+    display: grid;
+    justify-content: center;
+    align-items: end;
+    color: white;
+    font-size: 62px;
+    width: 65%;
+    height: 100vh;
+    background-image:
+        linear-gradient(90deg, rgba(255,255,255,0) 80%, rgba(1, 116, 161, 1) 100%),
+        url('https://cdn.discordapp.com/attachments/598204356923359252/987948504771092550/back.jpg');
+    background-size: cover;
+    color: white;
+    padding: 20px;
+}
+.regist{
+    box-sizing: border-box;
+    place-self: center;
+    height: 24px;
+    width: 120px;
+    font-size: 20px;
+    margin-top: 24px;
+    text-align: center;
+    text-decoration: none;
+    color: #ACCAFF;
+    transition: all 500ms;
+}
+.regist:visited{
+    color: #ACCAFF;
+}
+
+.regist:hover{
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.iniciosesion-form{
+    position: absolute;
+    width: 350px;
+    top: 20%;
+    left: 50%;
+    background-color: white;
+    font-weight: lighter;
+    color: #00597f;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transform: translate(-50%, 0%);
+}
+
+.iniciosesion-form h2{
+    font-size: 20px;
+    font-weight: lighter;
+    margin-bottom: 0px;
+}
+
+.iniciosesion-form-titulo{
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    border-top-left-radius: 15px;
+    background-color: #00597f;
+}
+
+.iniciosesion-form-titulo span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    width: 90px;
+    height: 90px;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.iniciosesion-form form{
+    padding: 25px;
+}
+
+.iniciosesion-form button{
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 20px;
+    border: none;
+    background-color: white;
+    color: #00597f;
+    border: 1px solid #00597f;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transition: 0.3s;
+}
+
+
+.iniciosesion-form button:hover{
+    background-color: #00597f;
+    color: white;
+    padding: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+

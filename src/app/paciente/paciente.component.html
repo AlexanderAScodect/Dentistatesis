@@ -1,0 +1,128 @@
+<app-navbar></app-navbar>
+<div class="paciente">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-lg-4">
+                <div class="d-flex justify-content-center">
+                    <span class="paciente-icono"><i class="fa-solid fa-user"></i></span>
+                </div>
+                <div class="d-flex justify-content-center mt-4">
+                    <button mat-raised-button color="accent" (click)="cerrarsesion()">Cerrar Sesion</button>
+                </div>
+            </div>
+            <div class="col-lg">
+                <mat-tab-group>
+                    <mat-tab>
+                        <ng-template mat-tab-label class="d-flex align-items-center justify-content-between">
+                            <span class="mat-icono"><i class="fa-solid fa-user-gear"></i></span>
+                            <span class="ms-2">Cuenta</span>
+                        </ng-template>
+                        <div class="paciente-home">
+                            <form action="" [formGroup]="form" (submit)="submit()">
+                                <div class="row mx-0 px-0">
+                                    <div class="col-lg">
+                                        <mat-form-field class="w-100" appearance="fill">
+                                            <mat-label>DNI</mat-label>
+                                            <input matInput type="number" placeholder="DNI" formControlName="DniPa"readonly>
+                                            <mat-error *ngIf="form.get('DniPa').hasError('required')">
+                                                DNI es <strong>requerido</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-lg">
+                                        <mat-form-field class="w-100" appearance="fill">
+                                            <mat-label>Nombre</mat-label>
+                                            <input matInput placeholder="nombre" formControlName="Nombre">
+                                            <mat-error *ngIf="form.get('Nombre').hasError('required')">
+                                                Nombre es <strong>requerido</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row mx-0 px-0">
+                                    <div class="col-lg">
+                                        <mat-form-field class="w-100" appearance="fill">
+                                            <mat-label>Correo</mat-label>
+                                            <input matInput placeholder="correo" formControlName="Correo">
+                                            <mat-error
+                                                *ngIf="form.get('Correo').hasError('email') && !form.get('Nombre').hasError('required')">
+                                                Porfavor ingrese un correo valido
+                                            </mat-error>
+                                            <mat-error *ngIf="form.get('Correo').hasError('required')">
+                                                Correo es <strong>requerido</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row mx-0 px-0">
+                                    <div class="col-lg">
+                                        <mat-form-field class="w-100" appearance="fill">
+                                            <mat-label>Telefono</mat-label>
+                                            <input matInput type="number" placeholder="telefono"
+                                                formControlName="Telefono">
+                                            <mat-error *ngIf="form.get('Telefono').hasError('required')">
+                                                Telefono es <strong>requerido</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-lg">
+                                        <mat-form-field class="w-100" appearance="fill">
+                                            <mat-label>Edad</mat-label>
+                                            <input matInput type="number" placeholder="edad" formControlName="Edad">
+                                            <mat-error *ngIf="form.get('Edad').hasError('required')">
+                                                Edad es <strong>requerido</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row mx-0 px-0">
+                                    <div class="col-lg">
+                                        <mat-form-field class="w-100" appearance="fill">
+                                            <mat-label>Contraseña</mat-label>
+                                            <input matInput type="password" placeholder="edad" formControlName="Clave">
+                                            <mat-error *ngIf="form.get('Clave').hasError('required')">
+                                                La Contraseña es <strong>requerida</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center mt-4">
+                                    <button mat-raised-button type="submit" color="primary">Guardar cambios</button>
+                                </div>
+                            </form>
+                        </div>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label class="d-flex align-items-center justify-content-between">
+                            <span class="mat-icono"><i class="fa-solid fa-address-book"></i></span>
+                            <span class="ms-2">Citas</span>
+                        </ng-template>
+                        <div class="paciente-citas">
+                            <div class="mt-5" *ngIf="servicios.length > 0">
+                                <table class="table shadow-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Doctor</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Servicio</th>
+                                            <th scope="col">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let s of servicios">
+                                            <td>{{ s.nombre_doctor }}</td>
+                                            <td>{{ s.fecha.split("T")[0] }}</td>
+                                            <td>{{ s.tipo_cita }}</td>
+                                            <td>S/ {{ s.total }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+    </div>
+</div>
+<app-home-footer></app-home-footer>

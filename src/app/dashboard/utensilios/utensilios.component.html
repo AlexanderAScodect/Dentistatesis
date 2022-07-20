@@ -1,0 +1,122 @@
+<ng-template #contented let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h1 class="modal-title titulomodal" id="modal-basic-title">descripcion</h1>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="formanodal">
+            <form [formGroup]="myForm">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Categoria</mat-label>
+                <input matInput rows="1" readonly="true" [value]="categorianombre"  autocomplete="off" type="text" id="fname">
+                </mat-form-field><hr>
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Descripcion</mat-label>
+                  <textarea readonly matInput rows="6" maxlength="255" formControlName="Descripcion" autocomplete="off" type="text" id="fname"></textarea>
+                  <mat-error *ngIf="myForm.get('Descripcion').hasError('required')">
+                      <strong>Descripcion es requerido</strong></mat-error>
+                  </mat-form-field>
+            </form>
+        </div>
+    </div>
+  </ng-template>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h1 class="modal-title titulomodal" id="modal-basic-title">Utensilios</h1>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="formanodal">
+            <form [formGroup]="myForm">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Nombre del utensilio</mat-label>
+                <input matInput rows="1" maxlength="255" formControlName="Nombre" autocomplete="off" type="text" id="fname">
+                <mat-error *ngIf="myForm.get('Nombre').hasError('required')">
+                    <strong>Nombre es requerido</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Cantidad</mat-label>
+                  <input matInput rows="1" maxlength="255" formControlName="Cantidad" autocomplete="off" type="number" id="fname">
+                  <mat-error *ngIf="myForm.get('Cantidad').hasError('required')">
+                      <strong>Cantidad es requerido</strong></mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Precio </mat-label>
+                    <span matPrefix>S/. &nbsp;</span>
+                    <input matInput rows="1" maxlength="255" formControlName="Precio" autocomplete="off" type="number" id="fname">
+                    <mat-error *ngIf="myForm.get('Precio').hasError('required')">
+                        <strong>Precio es requerido</strong></mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100" appearance="fill">
+                      <mat-label>Categoria</mat-label>
+                      <mat-select formControlName="IdCategoria" (valueChange)="cambiarid($event)">
+                          <mat-option *ngFor="let food of cat" [value]="food.IdCategoria">
+                              {{food.Nombre}}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field><hr>
+
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Descripcion</mat-label>
+                  <textarea matInput rows="6" maxlength="255" formControlName="Descripcion" autocomplete="off" type="text" id="fname"></textarea>
+                  <mat-error *ngIf="myForm.get('Descripcion').hasError('required')">
+                      <strong>Descripcion es requerido</strong></mat-error>
+                  </mat-form-field>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-green" (click)="onSubmit()">Guardar</button>
+    </div>
+  </ng-template>
+  <div class="all">
+      <div *ngIf="uten,cat" class="d-flex flex-column justify-content-center">
+        <div class="seccion shadow d-flex align-items-center">
+          <div class="d-flex">
+            <i class="fa-solid fa-mask-face iconside"></i>
+          <h1 class="titulo">Utensilios</h1>
+          </div>
+        </div>
+          <div class="d-flex mt-3 justify-content-between">
+            <mat-form-field class="w-25" appearance="fill">
+                <mat-label>Busca por Nombre</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="..." value="">                
+            </mat-form-field>           
+            <span class="iconocrear"><i class="fa-solid fa-square-plus " (click)="open(content, null)"></i></span>
+        </div>
+        <table class="table shadow matSort" >
+          <thead>
+            <tr>
+              <th scope="col" class="head">Nombre<button class="botonordenar" (click)="sortNombre()" ><i class="fa-solid fa-arrow-down-short-wide inconsort"></i></button></th>
+              <th scope="col" class="head">Cantidad</th>
+              <th scope="col" class="head">Precio</th>
+              <th scope="col" class="head acciones"> Acciones</th>
+            </tr>
+          </thead>
+          <tbody >
+            
+            <tr *ngFor="let do of uten | slice: (page-1) * pageSize : page * pageSize">
+              <td class="head">{{do.Nombre}}</td>
+              <td class="head">{{do.Cantidad}}</td>
+              <td class="head">S/. {{do.Precio}}</td>
+              <td >
+                <div class="icon justify-content-center">
+                  <span class="icono" matTooltip="Detalle" (click)="opened(contented, do)"><i class="fa-solid fa-magnifying-glass " style="color: #1878b0;" ></i></span>
+                  <span class="icono" matTooltip="Editar Cita" (click)="open(content, do)"><i class="fa-solid fa-pen-to-square " style="color: #1f516f;"></i></span>
+                  <span class="icono" matTooltip="Eliminar Cita" (click)="eliminarcat(do)"><i class="fa-solid fa-circle-minus " style="color: #e15639;"></i></span>
+                </div>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+        <ngb-pagination class="d-flex justify-content-end" 
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [collectionSize]="uten.length"></ngb-pagination>
+      </div>
+      
+    </div>
+      
+      

@@ -1,0 +1,32 @@
+.navbar-home {
+    background-color: white;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+}
+
+.nav-link{
+    font-size: 17px;
+    text-align: center;
+    display: block;
+    transition: 0.3s;
+}
+
+.nav-item{
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.nav-link:hover{
+    color: #6badfd;
+}
+
+.navbar-brand {
+    max-width: 100px;
+}
+
+.navbar-brand img {
+    width: 100%;
+}

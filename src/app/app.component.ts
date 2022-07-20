@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+//import { DoctorService } from './services/doctor.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Dentistatesis';
-}
+
+
+ // public doc:Array<any>=[]
+
+ // constructor(
+  //  private doctor:DoctorService) {
+     // this.doctor.getdoctor().subscribe((resp:any)=>{
+      //  console.log(resp)
+     //   this.doc=resp
+      }//)
+   // }
+ // }
+

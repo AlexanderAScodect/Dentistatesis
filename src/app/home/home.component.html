@@ -1,0 +1,107 @@
+<app-navbar></app-navbar>
+<div class="body">
+    <ngb-carousel *ngIf="images" class="mt-5">
+        <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+                <img [src]="images[0]" alt="Random first slide">
+            </div>
+            <div class="carousel-caption">
+                <h3>Diseñada para SONREÍR</h3>
+                <p>10 años de experiencia brindando atención dental amable.</p>
+            </div>
+        </ng-template>
+        <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+                <img [src]="images[1]" alt="Random second slide">
+            </div>
+            <div class="carousel-caption">
+                <h3>El cambio lo haces tú</h3>
+                <p>Nuestra experiencia nos garantiza...</p>
+            </div>
+        </ng-template>
+        <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+                <img [src]="images[2]" alt="Random third slide">
+            </div>
+            <div class="carousel-caption">
+                <h3>Queremos verte sonreír!!!</h3>
+                <p>Prevención y salud bucal es nuestra garantía</p>
+            </div>
+        </ng-template>
+    </ngb-carousel>
+    <div class="container"  id="nosotros">
+        <div class="sobre-nosotros">
+            <h2>ACERCA DE NOSOTROS</h2>
+            <div class="row d-flex justify-content-center mt-5">
+                <div class="col-lg-4 pt-5 pb-5">
+                    <p class="fst-italic">Somos una gran familia de profesionales que pone a su disposición
+                        diagnósticos, tratamientos
+                        y prevención. Con eficacia, calidad, calidez y humildad.
+                        Nuestro trabajo se refleja en nuestros pacientes por tanto el paciente es nuestra prioridad.
+                    </p>
+                </div>
+                <div class="col-lg-1 d-flex justify-content-center ">
+                    <span class="separador"></span>
+                </div>
+                <div class="col-lg-4 pt-5 pb-5">
+                    <span class="fw-bold">Dental Llerena</span>
+                    <p>
+                        donde nuestro principal objetivo es tu Salud. Con profesionales de calidad.
+                        Ofrece a sus pacientes atención especializada en: Pediatría, Cirugía General y reconstructiva.
+                        Ademas atención Dental.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-imagen parallax-window" data-parallax="scroll" data-image-src="http://www.clinicacanoalvarez.com/sites/default/files/slider_coca_ninos.jpg">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-lg">
+                    <img width="100%" src="http://www.clinicacanoalvarez.com/sites/default/files/styles/news_712x466/public/pigmentacion_dental.jpg?itok=mnwUxZAk"
+                        alt="">
+                </div>
+                <div class="col-lg">
+                    <div class="section-info">
+                        <h2>Tu sonrisa, nuestra especialidad</h2>
+                        <p>Nuestro trabajo es mucho más que hacer tratamientos dentales. Brindar salud y conseguir la mejor
+                            sonrisa de nuestros pacientes, es nuestra misión diaria. Grandes y chicos expresan su plena
+                            satisfacción, tras dejar su tratamiento en manos de nuestros profesionales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="parallax-window" data-parallax="scroll" data-image-src="http://www.clinicacanoalvarez.com/sites/default/files/slider_odontologico.jpg">
+        <div class="servicios" id="servicios">
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-lg-4">
+                        <div class="servicio">
+                            <h2>BLANQUEAMIENTO</h2>
+                            <img class="shadow-sm imagenes "
+                             src="http://www.clinicacanoalvarez.com/sites/default/files/styles/news_720/public/rehabilitacionoral.png?itok=238KEHm3" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="servicio">
+                            <h2>LIMPIEZA</h2>
+                            <img class="shadow-sm w-100" src="http://dentalcornejo.com/wp-content/uploads/2017/11/endodoncia-4-710x575.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="servicio">
+                            <h2>ORTODONCIA</h2>
+                            <img class="shadow-sm w-100"  src="http://dentalcornejo.com/wp-content/uploads/2015/10/Dental-1500-22-710x575.jpg" alt="">
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <app-home-footer></app-home-footer>
+</div>

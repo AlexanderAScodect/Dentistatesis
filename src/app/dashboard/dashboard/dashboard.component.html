@@ -1,0 +1,77 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<nav class="navbar navbar-expand-lg bg-light allex">
+    <div class="container ">
+        <span class="navbar-brand" href="#">
+            <span class="iconocerrar" matTooltip="Abrir"><i class="fa-solid fa-align-justify"
+                    (click)="mostrarAside = !mostrarAside"></i></span>
+        </span>
+        <span class="txtmenu text-white">Menu</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <div class="ms-auto">
+                    <button mat-icon-button [matMenuTriggerFor]="cuentaopciones">
+                        <mat-icon>account_circle</mat-icon>
+                    </button>
+                    <mat-menu #cuentaopciones>
+                        <menu mat-menu-item class="px-3 text-center" (click)="cerrarsesion()"><mat-icon>logout</mat-icon> <span>Cerrar sesion</span></menu>
+                    </mat-menu>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="modal-body">
+    <div class="formanodal">
+
+    </div>
+</div>
+<div class="show">
+    <aside class="aside" [ngClass]="{ 'mostrar' : mostrarAside }">
+        <div class="aside__items">
+            <img class="logo"
+                src="https://media.discordapp.net/attachments/598204356923359252/987948491747766272/gatoctmr.png"
+                alt="Logo Dental Llerena">
+            <div class="list-cont">
+                <ul class="listRutas">
+                    <li class="list__item" [routerLink]="['servicio']">
+                        <i class="fa-solid fa-calendar-days iconside"></i>
+                        <a class="list__item-a">Citas </a>
+                    </li>
+                    <li class="list__item" [routerLink]="['doctores']">
+                        <i class="fa-solid fa-user-doctor iconside"></i>
+                        <a class="list__item-a ">Doctor </a>
+                    </li>
+                    <li class="list__item" [routerLink]="['pacientes']">
+                        <i class="fa-solid fa-person-half-dress iconside"></i>
+                        <a class="list__item-a ">Paciente </a>
+                    </li>
+                    <li class="list__item" [routerLink]="['citas']">
+                        <i class="fa-solid fa-clipboard-user iconside"></i>
+                        <a class="list__item-a">Servicio </a>
+                    </li>
+                    <li class="list__item" [routerLink]="['categorias']">
+                        <i class="fa-regular fa-square-plus iconside"></i>
+                        <a class="list__item-a">Categoria </a>
+                    </li>
+                    <li class="list__item" [routerLink]="['utencilios']">
+                        <i class="fa-solid fa-mask-face iconside"></i>
+                        <a class="list__item-a">Utencilios </a>
+                    </li>
+                    <li class="list__item" [routerLink]="['utencilioscita']">
+                        <i class="fa-solid fa-vials iconside"></i>
+                        <a class="list__item-a">UtenciliosCita</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<router-outlet></router-outlet>

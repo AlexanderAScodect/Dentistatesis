@@ -1,0 +1,77 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h1 class="modal-title titulomodal" id="modal-basic-title">Utencilios-Cita</h1>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="formanodal">
+            <form [formGroup]="myForm">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Cantidad de utencilios</mat-label>
+                <input matInput maxlength="255" formControlName="Cantidad" autocomplete="off" type="number" id="fname">
+                <mat-error *ngIf="myForm.get('Cantidad').hasError('required')">
+                    <strong>El utensilio es requerido</strong></mat-error>
+                </mat-form-field><hr>
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Nombre del Utencilio</mat-label>
+                  <mat-select formControlName="IdUtensilios" (valueChange)="cambiaruten($event)">
+                      <mat-option *ngFor="let food of uten" [value]="food.IdUtensilios">
+                          {{food.Nombre}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field><hr>
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Nombre del servicio</mat-label>
+                <mat-select formControlName="IdCitas" (valueChange)="cambiarcit($event)">
+                    <mat-option *ngFor="let food of cit" [value]="food.IdCitas">
+                        {{food.Nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Guardar</button>
+    </div>
+  </ng-template>
+  <div class="all">
+      <div *ngIf="utc" class="d-flex flex-column justify-content-center">
+        <div class="seccion shadow d-flex align-items-center">
+          <i class="fa-solid fa-vials iconside"></i>
+          <h1 class="titulo">Utensilios Cita</h1>
+        </div>
+          <div  class="iconocrear display-flex "><i class="fa-solid fa-square-plus xdxd" (click)="open(content, null)"></i></div>
+        <table class="table shadow matSort" >
+          <thead>
+            <tr>
+              <th scope="col" class="head">Cantidad</th>
+              <th scope="col" class="head">Utensilio</th>
+              <th scope="col" class="head">Servicio</th>
+              <th scope="col" class="head acciones"> Acciones</th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let do of utc | slice: (page-1) * pageSize : page * pageSize">
+              <td class="head">{{do.cantidad}}</td>
+              <td class="head">{{do.nombre_utensilio}}</td>
+              <td class="head">{{do.nombre_cita}}</td>
+              <td>
+                <div class="icon justify-content-center">
+                    <span class="icono" matTooltip="Editar Utencilios cita"><i class="fa-solid fa-pen-to-square "
+                            (click)="open(content, do)" style="color: #1f516f;"></i></span>
+                    <span class="icono" matTooltip="Eliminar Utencilios cita" (click)="eliminarcat(do)"><i class="fa-solid fa-circle-minus "
+                            style="color: #e15639;"></i></span>
+                </div>
+            </td>
+            </tr>
+            
+          </tbody>
+        </table>
+        <ngb-pagination class="d-flex justify-content-end" 
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [collectionSize]="utc.length"></ngb-pagination>
+      </div>
+      </div>
+      

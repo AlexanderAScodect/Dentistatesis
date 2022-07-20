@@ -1,0 +1,160 @@
+<app-navbar></app-navbar>
+<div class="agendar-cita">
+    <div class="agendar">
+        <div class="container">
+            <div class="cita shadow-lg">
+                <h2>AGENDA TU CITA</h2>
+                <form action="" class="form-cita" [formGroup]="form" (submit)="submit()">
+                    <p class="text-center w-100 mb-4 mt-3 text-secondary fw-bold">Por favor llena el formulario para comunicarnos contigo lo antes posible.</p>
+                    <div class="row">
+                        <div class="col-lg" *ngIf="!pacientesesion">
+                            <p class="mb-3 fw-bold">Ingrese datos de su cuenta</p>
+                            <div class="row">
+                                <div class="col-lg">
+                                    <mat-form-field class="w-100" appearance="fill">
+                                        <mat-label>DNI</mat-label>
+                                        <input matInput type="number" placeholder="DNI" formControlName="DniPa">
+                                        <mat-error *ngIf="form.get('DniPa').hasError('required')">
+                                            DNI es <strong>requerido</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg">
+                                    <mat-form-field class="w-100" appearance="fill">
+                                        <mat-label>Nombre</mat-label>
+                                        <input matInput placeholder="nombre" formControlName="Nombre">
+                                        <mat-error *ngIf="form.get('Nombre').hasError('required')">
+                                            Nombre es <strong>requerido</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg">
+                                    <mat-form-field class="w-100" appearance="fill">
+                                        <mat-label>Telefono</mat-label>
+                                        <input matInput type="number" placeholder="telefono" formControlName="Telefono">
+                                        <mat-error *ngIf="form.get('Telefono').hasError('required')">
+                                            Telefono es <strong>requerido</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg">
+                                    <mat-form-field class="w-100" appearance="fill">
+                                        <mat-label>Edad</mat-label>
+                                        <input matInput type="number" placeholder="edad" formControlName="Edad">
+                                        <mat-error *ngIf="form.get('Edad').hasError('required')">
+                                            Edad es <strong>requerido</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg">
+                                    <mat-form-field class="w-100" appearance="fill">
+                                        <mat-label>Correo</mat-label>
+                                        <input matInput placeholder="correo" formControlName="Correo">
+                                        <mat-error *ngIf="form.get('Correo').hasError('email') && !form.get('Nombre').hasError('required')">
+                                            Porfavor ingrese un correo valido
+                                        </mat-error>
+                                        <mat-error *ngIf="form.get('Correo').hasError('required')">
+                                            Correo es <strong>requerido</strong>
+                                        </mat-error>
+                                        
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg">
+                                    <mat-form-field class="w-100" appearance="fill">
+                                        <mat-label>Contraseña</mat-label>
+                                        <input matInput type="password" placeholder="edad" formControlName="Clave">
+                                        <mat-error *ngIf="form.get('Clave').hasError('required')">
+                                            La Contraseña es <strong>requerida</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                
+                                <div class="col-lg">
+                                    <mat-form-field class="w-100" appearance="fill">
+                                        <mat-label>Asunto</mat-label>
+                                        <textarea rows="3" matInput type="text"  formControlName="Observaciones"></textarea>
+                                    </mat-form-field>
+                                </div> 
+                            </div>
+                            
+                        </div>
+                        <div class="col-lg-1 d-flex justify-content-center mx-0 px-0 align-items-center" *ngIf="!pacientesesion">
+                            <span class="separador"></span>
+                        </div>
+                        <div class="col-lg position-relative">
+                            <p class="mb-3 fw-bold">Datos de su cita</p>
+                            <div class="row">
+                                <div class="col-lg">
+                                    <mat-form-field class="w-100" appearance="fill">
+                                        <mat-label>Indique la fecha de su cita</mat-label>
+                                        <input matInput id="fecha-cita" type="number" placeholder="fecha de la cita" formControlName="Fechadia" readonly>
+                                        <mat-error *ngIf="form.get('Fechadia').hasError('required')">
+                                            La fecha es <strong>requerida</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg">
+                                    <mat-form-field class="w-100" appearance="fill">
+                                        <mat-label>Indique la fecha de su cita</mat-label>
+                                        <input matInput type="text" id="hora-cita" placeholder="hora de su cita"
+                                            formControlName="Fechahora" readonly>
+                                        <mat-error *ngIf="form.get('Fechahora').hasError('required')">
+                                            La hora es <strong>requerida</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg">
+                                    <div class="mb-3">
+                                        <mat-form-field class="w-100" appearance="fill">
+                                            <mat-label>Servicio</mat-label>
+                                            <mat-select formControlName="IdCitas">
+                                                <mat-option *ngFor="let cita of citas" [value]="cita.IdCitas">
+                                                    {{cita.Nombre}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="form.get('Fechahora').hasError('required')">
+                                                El tipo de servicio es <strong>requerido</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="doctores">
+                                <div class="col-lg">
+                                    <div class="mb-3">
+                                        <mat-form-field class="w-100" appearance="fill">
+                                            <mat-label>Seleccione su doctor</mat-label>
+                                            <mat-select formControlName="DniDo">
+                                                <mat-option [value]="doc.DniDo" *ngFor="let doc of doctores">{{
+                                                    doc.Nombre }}</mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="form.get('DniDo').hasError('required')">
+                                                El doctor es <strong>requerido</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="centrar-boton">
+                            <button class="button-agendar-cita">AGENDAR CITA</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-home-footer></app-home-footer>
